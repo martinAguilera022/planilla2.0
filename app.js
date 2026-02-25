@@ -104,7 +104,7 @@ function obtenerDatosFormulario() {
     },
 
     carga: {
-      equipo: document.getElementById("equipoCarga")?.value,
+      equipo: document.getElementById("nombreEquipoCarga")?.value,
 
       personalCapacitado: {
         ...marcarEstado(document.querySelector('input[name="personalCapacitado"]:checked')?.value),
