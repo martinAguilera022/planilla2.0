@@ -475,6 +475,7 @@ function generarPlanilla() {
 
 </div>
 	`;
+  generarPDF();
 }
 async function generarPDF() {
   await document.fonts.ready;
@@ -531,5 +532,11 @@ async function generarPDF() {
   const y = (pageHeight - finalHeight) / 2;
 
   pdf.addImage(imgData, "PNG", x, y, finalWidth, finalHeight);
-  pdf.save("Planilla_Inspeccion.pdf");
+  pdf.save('Planilla_Inspeccion');
+  Swal.fire({
+    icon: 'success',
+    title: 'Archivo generado',
+    text: 'El PDF se descargó correctamente',
+    confirmButtonColor: '#16a34a'
+  });
 }
