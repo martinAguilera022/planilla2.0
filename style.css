@@ -1,0 +1,318 @@
+/* ========================= */
+/* RESET */
+/* ========================= */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background: #f4f6f8;
+	margin: 0;
+	padding: 15px;
+	color: #333;
+}
+body {
+    background: #ccc;
+    font-family: Arial, sans-serif;
+}
+
+.a4 {
+    width: 794px;
+    min-height: 1123px;
+    background: white;
+    margin-top:2px;
+    padding:  2px
+    box-sizing: border-box;
+    font-size: 12px;
+    color: black;
+}
+
+/* ENCABEZADO */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.departamento {
+    color: red;
+    font-size: 13px;
+    margin: 0;
+}
+
+.empresa {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+}
+
+.header-right {
+    text-align: right;
+    font-size: 11px;
+}
+
+/* TITULO */
+
+.titulo {
+    text-align: center;
+    font-weight: bold;
+    background: #eaeaea;
+    padding: 5px;
+    border: 1px solid black;
+    margin: 10px 0 20px 0;
+}
+
+/* DATOS */
+
+.datos {
+    margin-top: 10px;
+}
+
+.fila {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.fila span {
+    margin-right: 8px;
+}
+
+/* LINEAS */
+
+.linea {
+    border-bottom: 1px solid black;
+    height: 15px;
+}
+
+.corta {
+    width: 150px;
+}
+
+.media {
+    width: 300px;
+}
+
+.larga {
+    width: 500px;
+}
+
+.hora-label {
+    margin-left: 40px;
+}
+
+/* CUADRILLA */
+
+.cuadrilla-box {
+    width: 250px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+/* OPCIONES INLINE */
+
+.inline-opcion {
+    margin-left: 20px;
+}
+
+/* ========================= */
+/* FORMULARIO */
+/* ========================= */
+
+.form-container {
+	background: #ffffff;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+	margin-bottom: 30px;
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+	display: block;
+	font-weight: 600;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+	width: 100%;
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+}
+
+textarea {
+	resize: vertical;
+	min-height: 60px;
+}
+
+.linea-pdf {
+	border-bottom: 1px solid black;
+	min-height: 18px;
+	display: flex;
+	align-items: flex-end;
+  }
+/* Checkboxes más grandes en móvil */
+input[type="checkbox"] {
+	width: 18px;
+	height: 18px;
+	margin-right: 6px;
+}
+
+/* ========================= */
+/* GRUPOS FLEX */
+/* ========================= */
+
+.present-carga {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+/* ========================= */
+/* TABLAS RESPONSIVE */
+/* ========================= */
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 15px;
+	font-size: 13px;
+}
+
+th,
+td {
+	border: 1px solid #ddd;
+	padding: 1px;
+	vertical-align: top;
+	color:black
+}
+tr{
+	color:black;
+	padding-bottom:4px;
+}
+th {
+	background:rgb(255, 255, 255);
+	color:black;
+	font-weight: 600;
+	text-align: center;
+	
+
+}
+
+/* Hace scroll horizontal si la tabla es muy ancha */
+.container {
+	overflow-x: auto;
+}
+
+/* ========================= */
+/* BOTONES */
+/* ========================= */
+
+button {
+	width: 100%;
+	padding: 14px;
+	margin-top: 15px;
+	border: none;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.2s ease;
+}
+
+button:first-of-type {
+	background: #1976d2;
+	color: white;
+}
+
+button:last-of-type {
+	background: #2e7d32;
+	color: white;
+}
+
+button:active {
+	transform: scale(0.98);
+}
+
+/* ========================= */
+/* A4 PREVIEW */
+/* ========================= */
+
+.a4 {
+	width: 100%;
+	max-width: 794px;
+	min-height: 1123px;
+	background: white;
+	font-size: 12px;
+	border-radius: 6px;
+}
+
+/* ========================= */
+/* AJUSTES ESPECÍFICOS PDF  */
+/* ========================= */
+
+/* Todo lo que va dentro del PDF */
+#planillaPDF {
+	font-size: 11px;
+	line-height: 1.2; /* base uniforme */
+}
+
+/* Tablas del PDF: bordes limpios y texto centrado */
+#planillaPDF table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Celdas de tabla: alto fijo y centrado */
+#planillaPDF th,
+#planillaPDF td {
+	padding-top: 0;
+	padding-bottom: 3px; /* empuja el texto hacia la línea inferior */
+	height: 18px;
+	line-height: 18px;
+	vertical-align: middle;
+}
+
+/* Campos tipo "línea para completar" (texto pegado a la línea inferior) */
+#planillaPDF .campo-linea {
+	display: inline-flex;
+	align-items: flex-end; /* acerca el texto a la línea inferior */
+	height: 18px;
+	line-height: 1;        /* sin extra de altura */
+	padding-bottom: 4px;   /* desfase grande para compensar en el PDF */
+}
+/* ========================= */
+/* DESKTOP */
+/* ========================= */
+
+@media (min-width: 768px) {
+	body {
+		padding: 40px;
+	}
+
+	.form-container {
+		max-width: 900px;
+		margin: auto;
+	}
+
+	button {
+		width: auto;
+		padding: 12px 30px;
+	}
+}

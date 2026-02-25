@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planilla de Inspección</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planilla de Inspección</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 p-4">
+
+  <div id="contenidoPDF" class="max-w-md mx-auto bg-white rounded-3xl shadow-xl p-6 space-y-8">
+
+    <!-- ================= DATOS GENERALES ================= -->
+    <div class="bg-blue-50 border border-blue-100 p-5 rounded-2xl space-y-4">
+      <h3 class="text-blue-700 font-bold text-lg border-l-4 border-blue-600 pl-3">
+        Datos Generales
+      </h3>
+
+      <input id="supervisor" type="text" placeholder="Supervisor" class="w-full p-2 border rounded-xl">
+
+      <input id="fecha" type="date" class="w-full p-2 border rounded-xl">
+
+      <input id="hora" type="time" class="w-full p-2 border rounded-xl">
+
+      <input id="granja" type="text" placeholder="Nombre de la Granja" class="w-full p-2 border rounded-xl">
+
+      <input id="propietario" type="text" placeholder="Propietario" class="w-full p-2 border rounded-xl">
+      <input id="direccion" type="text" placeholder="Direccion" class="w-full p-2 border rounded-xl">
+      <select id="tipoPollo" class="w-full p-2 border rounded-xl">
+        <option value="">Tipo de Pollo</option>
+        <option value="EXP">EXP</option>
+        <option value="MI">MI</option>
+      </select>
+      <input id="destino" type="text" placeholder="Destino/s" class="w-full p-2 border rounded-xl">
+    </div>
+
+    <!-- ================= CUADRILLAS ================= -->
+    <div class="bg-emerald-50 border border-emerald-100 p-5 rounded-2xl space-y-4">
+      <h3 class="font-bold text-emerald-700 border-l-4 border-emerald-600 pl-3">
+        Cuadrillas
+      </h3>
+
+      <input id="cuadrilla1" type="text" placeholder="Cuadrilla 1" class="w-full p-2 border rounded-xl">
+      <input id="operarios1" type="number" placeholder="Operarios 1" class="w-full p-2 border rounded-xl">
+
+      <input id="cuadrilla2" type="text" placeholder="Cuadrilla 2" class="w-full p-2 border rounded-xl">
+      <input id="operarios2" type="number" placeholder="Operarios 2" class="w-full p-2 border rounded-xl">
+
+      <input id="cuadrilla3" type="text" placeholder="Cuadrilla 3" class="w-full p-2 border rounded-xl">
+      <input id="operarios3" type="number" placeholder="Operarios 3" class="w-full p-2 border rounded-xl">
+    </div>
+    <div class="bg-red-50 border border-emerald-100 p-5 rounded-2xl space-y-4">
+      <h3 class="font-bold text-red-700 border-l-4 border-amber-600 pl-3">
+        Mortandad en carga
+      </h3>
+
+      <input id="mortandad" type="text" class="w-full p-2 border rounded-xl">
+    </div>
+
+    <!-- ================= PRESENTES ================= -->
+    <div class="bg-amber-50 border border-amber-100 p-5 rounded-2xl space-y-4">
+      <h3 class="font-bold text-amber-700 border-l-4 border-amber-600 pl-3">
+        Presentes en la carga
+      </h3>
+
+      <div class="grid grid-cols-2 gap-2">
+        <label class=" border rounded-xl text-center cursor-pointer">
+          <input type="checkbox" id="propietarioPresente" class="hidden peer ">
+          <span class="block peer-checked:bg-green-500 peer-checked:text-white rounded-xl p-3">
+            Propietario
+          </span>
+        </label>
+
+        <label class=" border rounded-xl text-center cursor-pointer">
+          <input type="checkbox" id="encargadoPresente" class="hidden peer ">
+          <span class="block peer-checked:bg-green-500 peer-checked:text-white rounded-xl p-3">
+            Encargado
+          </span>
+        </label>
+
+        <label class=" border rounded-xl text-center cursor-pointer col-span-2">
+          <input type="checkbox" id="ningunoPresente" class="hidden peer">
+          <span class="block peer-checked:bg-red-500 peer-checked:text-white rounded-xl p-3">
+            Ninguno
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ================= CAMINO ================= -->
+    <div class="bg-amber-50 border border-amber-100 p-5 rounded-2xl space-y-4">
+      <h3 class="font-bold text-amber-700 border-l-4 border-amber-600 pl-3">
+        Camino hasta la granja
+      </h3>
+
+      <div class="grid grid-cols-3 gap-2">
+        <input type="radio" name="camino" value="Tierra" id="tierra" class="hidden peer/tierra">
+        <label for="tierra"
+          class="text-center p-2 border rounded-xl cursor-pointer peer-checked/tierra:bg-green-500 peer-checked/tierra:text-white">Tierra</label>
+
+        <input type="radio" name="camino" value="Asfaltado" id="asfaltado" class="hidden peer/asfalto">
+        <label for="asfaltado"
+          class="text-center p-2 border rounded-xl cursor-pointer peer-checked/asfalto:bg-green-500 peer-checked/asfalto:text-white">Asfaltado</label>
+
+        <input type="radio" name="camino" value="Mejorado" id="mejorado" class="hidden peer/mejorado">
+        <label for="mejorado"
+          class="text-center p-2 border rounded-xl cursor-pointer peer-checked/mejorado:bg-green-500 peer-checked/mejorado:text-white">Mejorado</label>
+      </div>
+    </div>
+
+    <!-- ================= EVALUACIÓN GENERAL ================= -->
+    <!-- ================= EVALUACIÓN DE INFRAESTRUCTURA ================= -->
+    <div class="bg-gray-50 border border-indigo-100 p-6 rounded-2xl space-y-6">
+
+      <h3 class="text-gray-800 font-bold text-lg border-l-4 border-gray-700 pl-3">
+        Evaluación de Infraestructura
+      </h3>
+
+      <!-- ITEM TEMPLATE -->
+      <!-- 1 -->
+      <div class="bg-white border border-gray-200 shadow-sm p-4 rounded-xl space-y-3">
+        <p class="font-medium">Caminos internos de la granja</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="caminosInternos" value="Bueno" id="ci-b" class="hidden peer/ci-b">
+          <label for="ci-b" class="text-center p-2 border rounded-xl cursor-pointer
+               peer-checked/ci-b:bg-green-500 peer-checked/ci-b:text-white">
+            Bueno
+          </label>
+
+          <input type="radio" name="caminosInternos" value="Regular" id="ci-r" class="hidden peer/ci-r">
+          <label for="ci-r" class="text-center p-2 border rounded-xl cursor-pointer
+               peer-checked/ci-r:bg-yellow-400 peer-checked/ci-r:text-white">
+            Regular
+          </label>
+
+          <input type="radio" name="caminosInternos" value="Malo" id="ci-m" class="hidden peer/ci-m">
+          <label for="ci-m" class="text-center p-2 border rounded-xl cursor-pointer
+               peer-checked/ci-m:bg-red-500 peer-checked/ci-m:text-white">
+            Malo
+          </label>
+        </div>
+
+        <textarea id="obsCaminosInternos" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+      <!-- 2 -->
+      <div class="bg-white border border-gray-200 shadow-sm p-4 rounded-xl space-y-3">
+        <p class="font-medium">Caminos hasta la granja</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="caminosHasta" value="Bueno" id="ch-b" class="hidden peer/ch-b">
+          <label for="ch-b"
+            class="text-center p-2 border rounded-xl peer-checked/ch-b:bg-green-500 peer-checked/ch-b:text-white">Bueno</label>
+
+          <input type="radio" name="caminosHasta" value="Regular" id="ch-r" class="hidden peer/ch-r">
+          <label for="ch-r"
+            class="text-center p-2 border rounded-xl peer-checked/ch-r:bg-yellow-400 peer-checked/ch-r:text-white">Regular</label>
+
+          <input type="radio" name="caminosHasta" value="Malo" id="ch-m" class="hidden peer/ch-m">
+          <label for="ch-m"
+            class="text-center p-2 border rounded-xl peer-checked/ch-m:bg-red-500 peer-checked/ch-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsCaminosHasta" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+      <!-- 3 -->
+      <div class="bg-white border border-gray-200 shadow-sm p-4 rounded-xl space-y-3">
+        <p class="font-medium">Tejidos de los galpones</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="tejidosGalpon" value="Bueno" id="tg-b" class="hidden peer/tg-b">
+          <label for="tg-b"
+            class="text-center p-2 border rounded-xl peer-checked/tg-b:bg-green-500 peer-checked/tg-b:text-white">Bueno</label>
+
+          <input type="radio" name="tejidosGalpon" value="Regular" id="tg-r" class="hidden peer/tg-r">
+          <label for="tg-r"
+            class="text-center p-2 border rounded-xl peer-checked/tg-r:bg-yellow-400 peer-checked/tg-r:text-white">Regular</label>
+
+          <input type="radio" name="tejidosGalpon" value="Malo" id="tg-m" class="hidden peer/tg-m">
+          <label for="tg-m"
+            class="text-center p-2 border rounded-xl peer-checked/tg-m:bg-red-500 peer-checked/tg-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsTejidosGalpon" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+      <!-- 4 -->
+      <div class="bg-white border border-gray-200 shadow-sm p-4 rounded-xl space-y-3">
+        <p class="font-medium">Cama de los galpones</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="camaGalpon" value="Bueno" id="cg-b" class="hidden peer/cg-b">
+          <label for="cg-b"
+            class="text-center p-2 border rounded-xl peer-checked/cg-b:bg-green-500 peer-checked/cg-b:text-white">Bueno</label>
+
+          <input type="radio" name="camaGalpon" value="Regular" id="cg-r" class="hidden peer/cg-r">
+          <label for="cg-r"
+            class="text-center p-2 border rounded-xl peer-checked/cg-r:bg-yellow-400 peer-checked/cg-r:text-white">Regular</label>
+
+          <input type="radio" name="camaGalpon" value="Malo" id="cg-m" class="hidden peer/cg-m">
+          <label for="cg-m"
+            class="text-center p-2 border rounded-xl peer-checked/cg-m:bg-red-500 peer-checked/cg-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsCamaGalpon" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+      <!-- 5 -->
+      <div class="bg-white border border-gray-200 shadow-sm p-4 rounded-xl space-y-3">
+        <p class="font-medium">Estado de las jaulas</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="estadoJaulas" value="Bueno" id="ej-b" class="hidden peer/ej-b">
+          <label for="ej-b"
+            class="text-center p-2 border rounded-xl peer-checked/ej-b:bg-green-500 peer-checked/ej-b:text-white">Bueno</label>
+
+          <input type="radio" name="estadoJaulas" value="Regular" id="ej-r" class="hidden peer/ej-r">
+          <label for="ej-r"
+            class="text-center p-2 border rounded-xl peer-checked/ej-r:bg-yellow-400 peer-checked/ej-r:text-white">Regular</label>
+
+          <input type="radio" name="estadoJaulas" value="Malo" id="ej-m" class="hidden peer/ej-m">
+          <label for="ej-m"
+            class="text-center p-2 border rounded-xl peer-checked/ej-m:bg-red-500 peer-checked/ej-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsEstadoJaulas" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+    </div>
+    <!-- ================= CORTE DE ALIMENTO ================= -->
+
+
+    <!-- Corte alimento -->
+    <!-- ================= CORTE DE ALIMENTO ================= -->
+    <div class="bg-purple-50 border border-purple-200 p-5 rounded-2xl space-y-5">
+
+      <h3 class="font-bold text-purple-700 border-l-4 border-purple-600 pl-3">
+        Corte de Alimento y Ayuno
+      </h3>
+
+      <!-- Corte alimento -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium text-purple-800">
+          Corte de alimento
+        </label>
+
+        <input type="time" id="horaCorteAlimento" class="w-full p-2 border border-purple-200 rounded-xl
+                  focus:ring-2 focus:ring-purple-400 outline-none">
+      </div>
+
+      <!-- Comienzo carga -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium text-purple-800">
+          Comienzo de carga
+        </label>
+
+        <input type="time" id="horaComienzoCarga" class="w-full p-2 border border-purple-200 rounded-xl
+                  focus:ring-2 focus:ring-purple-400 outline-none">
+      </div>
+
+      <!-- Horas ayuno -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium text-purple-800">
+          Horas de ayuno
+        </label>
+
+        <input type="number" id="horasAyuno" min="0" step="0.5" placeholder="Ej: 8" class="w-full p-2 border border-purple-200 rounded-xl
+                  focus:ring-2 focus:ring-purple-400 outline-none">
+      </div>
+
+    </div>
+    <!-- ================= CARGA ================= -->
+    <div class="bg-indigo-50 border border-indigo-100 p-6 rounded-2xl space-y-6">
+
+      <h2 class="text-xl font-bold text-indigo-700 border-l-4 border-indigo-600 pl-3">
+        Carga
+      </h2>
+
+
+      <!-- Nombre del equipo -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium ">
+          Equipo de Carga
+        </label>
+        <input type="text" id="nombreEquipoCarga" placeholder="Ej: Cuadrilla Norte" class="w-full p-2 border border-teal-200 rounded-xl
+                      focus:ring-2 focus:ring-teal-400 outline-none">
+      </div>
+
+      <!-- 1 -->
+      <div class="bg-white border rounded-xl p-4 space-y-3 shadow-sm">
+        <p class="font-medium">El personal está debidamente capacitado?</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="personalCapacitadoEval" value="Bueno" id="pc-b" class="hidden peer/pc-b">
+          <label for="pc-b"
+            class="text-center p-2 border rounded-xl cursor-pointer peer-checked/pc-b:bg-green-500 peer-checked/pc-b:text-white">Bueno</label>
+
+          <input type="radio" name="personalCapacitadoEval" value="Regular" id="pc-r" class="hidden peer/pc-r">
+          <label for="pc-r"
+            class="text-center p-2 border rounded-xl cursor-pointer peer-checked/pc-r:bg-yellow-400 peer-checked/pc-r:text-white">Regular</label>
+
+          <input type="radio" name="personalCapacitadoEval" value="Malo" id="pc-m" class="hidden peer/pc-m">
+          <label for="pc-m"
+            class="text-center p-2 border rounded-xl cursor-pointer peer-checked/pc-m:bg-red-500 peer-checked/pc-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsPersonalCapacitado" class="w-full p-2 border rounded-xl"
+          placeholder="Observaciones"></textarea>
+      </div>
+
+      <!-- 2 -->
+      <div class="bg-white border rounded-xl p-4 space-y-3 shadow-sm">
+        <p class="font-medium">Manipulación de las aves al momento de la carga</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="manipulacionAves" value="Bueno" id="ma-b" class="hidden peer/ma-b">
+          <label for="ma-b"
+            class="text-center p-2 border rounded-xl peer-checked/ma-b:bg-green-500 peer-checked/ma-b:text-white">Bueno</label>
+
+          <input type="radio" name="manipulacionAves" value="Regular" id="ma-r" class="hidden peer/ma-r">
+          <label for="ma-r"
+            class="text-center p-2 border rounded-xl peer-checked/ma-r:bg-yellow-400 peer-checked/ma-r:text-white">Regular</label>
+
+          <input type="radio" name="manipulacionAves" value="Malo" id="ma-m" class="hidden peer/ma-m">
+          <label for="ma-m"
+            class="text-center p-2 border rounded-xl peer-checked/ma-m:bg-red-500 peer-checked/ma-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsManipulacionAves" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+      <!-- 3 -->
+      <div class="bg-white border rounded-xl p-4 space-y-3 shadow-sm">
+        <p class="font-medium">Encerrado de las aves</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="encerradoAvesEval" value="Bueno" id="ea-b" class="hidden peer/ea-b">
+          <label for="ea-b"
+            class="text-center p-2 border rounded-xl peer-checked/ea-b:bg-green-500 peer-checked/ea-b:text-white">Bueno</label>
+
+          <input type="radio" name="encerradoAvesEval" value="Regular" id="ea-r" class="hidden peer/ea-r">
+          <label for="ea-r"
+            class="text-center p-2 border rounded-xl peer-checked/ea-r:bg-yellow-400 peer-checked/ea-r:text-white">Regular</label>
+
+          <input type="radio" name="encerradoAvesEval" value="Malo" id="ea-m" class="hidden peer/ea-m">
+          <label for="ea-m"
+            class="text-center p-2 border rounded-xl peer-checked/ea-m:bg-red-500 peer-checked/ea-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsEncerradoAves" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+      <!-- 4 -->
+      <div class="bg-white border rounded-xl p-4 space-y-3 shadow-sm">
+        <p class="font-medium">Carga de las jaulas al camión</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="cargaJaulasEval" value="Bueno" id="cj-b" class="hidden peer/cj-b">
+          <label for="cj-b"
+            class="text-center p-2 border rounded-xl peer-checked/cj-b:bg-green-500 peer-checked/cj-b:text-white">Bueno</label>
+
+          <input type="radio" name="cargaJaulasEval" value="Regular" id="cj-r" class="hidden peer/cj-r">
+          <label for="cj-r"
+            class="text-center p-2 border rounded-xl peer-checked/cj-r:bg-yellow-400 peer-checked/cj-r:text-white">Regular</label>
+
+          <input type="radio" name="cargaJaulasEval" value="Malo" id="cj-m" class="hidden peer/cj-m">
+          <label for="cj-m"
+            class="text-center p-2 border rounded-xl peer-checked/cj-m:bg-red-500 peer-checked/cj-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsCargaJaulas" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+
+      <!-- Aves muertas -->
+      <!-- Aves muertas -->
+      <div class="bg-white border rounded-xl p-4 space-y-3 shadow-sm">
+        <p class="font-medium">¿Las aves muertas son retiradas?</p>
+
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="avesMuertasEval" value="Bueno" id="am-b" class="hidden peer/am-b">
+          <label for="am-b"
+            class="text-center p-2 border rounded-xl peer-checked/am-b:bg-green-500 peer-checked/am-b:text-white">Bueno</label>
+
+          <input type="radio" name="avesMuertasEval" value="Regular" id="am-r" class="hidden peer/am-r">
+          <label for="am-r"
+            class="text-center p-2 border rounded-xl peer-checked/am-r:bg-yellow-400 peer-checked/am-r:text-white">Regular</label>
+
+          <input type="radio" name="avesMuertasEval" value="Malo" id="am-m" class="hidden peer/am-m">
+          <label for="am-m"
+            class="text-center p-2 border rounded-xl peer-checked/am-m:bg-red-500 peer-checked/am-m:text-white">Malo</label>
+        </div>
+
+        <textarea id="obsAvesMuertas" class="w-full p-2 border rounded-xl" placeholder="Observaciones"></textarea>
+      </div>
+
+      <!-- 1. Se cargan aves muertas -->
+      <div class="bg-white border rounded-xl p-4 space-y-3 shadow-sm">
+        <p class="font-medium">¿Se cargan aves muertas?</p>
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="seCarganAvesMuertas" value="Si" id="amc-si" class="hidden peer/amc-si">
+          <label for="amc-si"
+            class="text-center p-2 border rounded-xl peer-checked/amc-si:bg-green-500 peer-checked/amc-si:text-white cursor-pointer">Si</label>
+
+          <input type="radio" name="seCarganAvesMuertas" value="No" id="amc-no" class="hidden peer/amc-no">
+          <label for="amc-no"
+            class="text-center p-2 border rounded-xl peer-checked/amc-no:bg-red-500 peer-checked/amc-no:text-white cursor-pointer">No</label>
+
+          <input type="radio" name="seCarganAvesMuertas" value="NA" id="amc-na" class="hidden peer/amc-na">
+          <label for="amc-na"
+            class="text-center p-2 border rounded-xl peer-checked/amc-na:bg-gray-400 peer-checked/amc-na:text-white cursor-pointer">NA</label>
+        </div>
+      </div>
+
+      <!-- 2. Bienestar animal -->
+      <div class="bg-white border rounded-xl p-4 space-y-3 shadow-sm">
+        <p class="font-medium">¿Se sacrifican respetando el bienestar animal?</p>
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="bienestarAnimal" value="Si" id="ba-si" class="hidden peer/ba-si">
+          <label for="ba-si"
+            class="text-center p-2 border rounded-xl peer-checked/ba-si:bg-green-500 peer-checked/ba-si:text-white cursor-pointer">Si</label>
+
+          <input type="radio" name="bienestarAnimal" value="No" id="ba-no" class="hidden peer/ba-no">
+          <label for="ba-no"
+            class="text-center p-2 border rounded-xl peer-checked/ba-no:bg-red-500 peer-checked/ba-no:text-white cursor-pointer">No</label>
+
+          <input type="radio" name="bienestarAnimal" value="NA" id="ba-na" class="hidden peer/ba-na">
+          <label for="ba-na"
+            class="text-center p-2 border rounded-xl peer-checked/ba-na:bg-gray-400 peer-checked/ba-na:text-white cursor-pointer">NA</label>
+        </div>
+      </div>
+
+      <!-- 3. Puertas -->
+      <div class="bg-white border rounded-xl p-4 space-y-3 shadow-sm">
+        <p class="font-medium ">¿Son suficientes el número de puertas?</p>
+        <div class="grid grid-cols-3 gap-2">
+          <input type="radio" name="puertas" value="Si" id="puertas-si" class="hidden peer/puertas-si">
+          <label for="puertas-si"
+            class="text-center p-2 border rounded-xl peer-checked/puertas-si:bg-green-500 peer-checked/puertas-si:text-white cursor-pointer">Si</label>
+
+          <input type="radio" name="puertas" value="No" id="puertas-no" class="hidden peer/puertas-no">
+          <label for="puertas-no"
+            class="text-center p-2 border rounded-xl peer-checked/puertas-no:bg-red-500 peer-checked/puertas-no:text-white cursor-pointer">No</label>
+
+          <input type="radio" name="puertas" value="NA" id="puertas-na" class="hidden peer/puertas-na">
+          <label for="puertas-na"
+            class="text-center p-2 border rounded-xl peer-checked/puertas-na:bg-gray-400 peer-checked/puertas-na:text-white cursor-pointer">NA</label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= OBSERVACIONES ================= -->
+    <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+      <label class="block font-semibold mb-2">Observaciones Generales</label>
+      <textarea id="observacionesFinales" class="w-full p-2 border rounded-xl" rows="4"></textarea>
+    </div>
+
+
+
+    <!-- ================= BOTONES ================= -->
+    <div class="space-y-3 pt-4">
+      <button onclick="generarPlanilla()"
+        class="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold shadow-md">
+        Generar Vista Previa
+      </button>
+
+      <button onclick="generarPDF()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-semibold shadow-md">
+        Descargar / Compartir PDF
+      </button>
+    </div>
+
+  </div>
+  <div id="planillaPDF"></div>
+  <!-- jsPDF desde CDN -->
+  <!-- html2canvas -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+ 
+  <script src="app.js"></script>
+</body>
+
+</html>
