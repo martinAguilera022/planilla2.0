@@ -160,12 +160,6 @@ textarea {
 	min-height: 60px;
 }
 
-.linea-pdf {
-	border-bottom: 1px solid black;
-	min-height: 18px;
-	display: flex;
-	align-items: flex-end;
-  }
 /* Checkboxes más grandes en móvil */
 input[type="checkbox"] {
 	width: 18px;
@@ -267,36 +261,7 @@ button:active {
 /* AJUSTES ESPECÍFICOS PDF  */
 /* ========================= */
 
-/* Todo lo que va dentro del PDF */
-#planillaPDF {
-	font-size: 11px;
-	line-height: 1.2; /* base uniforme */
-}
 
-/* Tablas del PDF: bordes limpios y texto centrado */
-#planillaPDF table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/* Celdas de tabla: alto fijo y centrado */
-#planillaPDF th,
-#planillaPDF td {
-	padding-top: 0;
-	padding-bottom: 3px; /* empuja el texto hacia la línea inferior */
-	height: 18px;
-	line-height: 18px;
-	vertical-align: middle;
-}
-
-/* Campos tipo "línea para completar" (texto pegado a la línea inferior) */
-#planillaPDF .campo-linea {
-	display: inline-flex;
-	align-items: flex-end; /* acerca el texto a la línea inferior */
-	height: 18px;
-	line-height: 1;        /* sin extra de altura */
-	padding-bottom: 4px;   /* desfase grande para compensar en el PDF */
-}
 /* ========================= */
 /* DESKTOP */
 /* ========================= */

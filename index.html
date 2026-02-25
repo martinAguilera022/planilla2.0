@@ -30,10 +30,23 @@
       </h3>
 
       <input id="supervisor" type="text" placeholder="Supervisor" class="w-full p-2 border rounded-xl">
+      <div class="space-y-4">
 
-      <input id="fecha" type="date" class="w-full p-2 border rounded-xl">
+        <div>
+          <label for="fecha" class="block text-sm font-medium text-gray-700 mb-1">
+            Fecha
+          </label>
+          <input id="fecha" type="date" class="w-full p-2 border rounded-xl">
+        </div>
 
-      <input id="hora" type="time" class="w-full p-2 border rounded-xl">
+        <div>
+          <label for="hora" class="block text-sm font-medium text-gray-700 mb-1">
+            Hora
+          </label>
+          <input id="hora" type="time" class="w-full p-2 border rounded-xl">
+        </div>
+
+      </div>
 
       <input id="granja" type="text" placeholder="Nombre de la Granja" class="w-full p-2 border rounded-xl">
 
@@ -349,15 +362,15 @@
         <p class="font-medium">Encerrado de las aves</p>
 
         <div class="grid grid-cols-3 gap-2">
-          <input type="radio" name="encerradoAvesEval" value="Bueno" id="ea-b" class="hidden peer/ea-b">
+          <input type="radio" name="encerradoAves" value="Bueno" id="ea-b" class="hidden peer/ea-b">
           <label for="ea-b"
             class="text-center p-2 border rounded-xl peer-checked/ea-b:bg-green-500 peer-checked/ea-b:text-white">Bueno</label>
 
-          <input type="radio" name="encerradoAvesEval" value="Regular" id="ea-r" class="hidden peer/ea-r">
+          <input type="radio" name="encerradoAves" value="Regular" id="ea-r" class="hidden peer/ea-r">
           <label for="ea-r"
             class="text-center p-2 border rounded-xl peer-checked/ea-r:bg-yellow-400 peer-checked/ea-r:text-white">Regular</label>
 
-          <input type="radio" name="encerradoAvesEval" value="Malo" id="ea-m" class="hidden peer/ea-m">
+          <input type="radio" name="encerradoAves" value="Malo" id="ea-m" class="hidden peer/ea-m">
           <label for="ea-m"
             class="text-center p-2 border rounded-xl peer-checked/ea-m:bg-red-500 peer-checked/ea-m:text-white">Malo</label>
         </div>
@@ -370,15 +383,15 @@
         <p class="font-medium">Carga de las jaulas al camión</p>
 
         <div class="grid grid-cols-3 gap-2">
-          <input type="radio" name="cargaJaulasEval" value="Bueno" id="cj-b" class="hidden peer/cj-b">
+          <input type="radio" name="cargaJaulas" value="Bueno" id="cj-b" class="hidden peer/cj-b">
           <label for="cj-b"
             class="text-center p-2 border rounded-xl peer-checked/cj-b:bg-green-500 peer-checked/cj-b:text-white">Bueno</label>
 
-          <input type="radio" name="cargaJaulasEval" value="Regular" id="cj-r" class="hidden peer/cj-r">
+          <input type="radio" name="cargaJaulas" value="Regular" id="cj-r" class="hidden peer/cj-r">
           <label for="cj-r"
             class="text-center p-2 border rounded-xl peer-checked/cj-r:bg-yellow-400 peer-checked/cj-r:text-white">Regular</label>
 
-          <input type="radio" name="cargaJaulasEval" value="Malo" id="cj-m" class="hidden peer/cj-m">
+          <input type="radio" name="cargaJaulas" value="Malo" id="cj-m" class="hidden peer/cj-m">
           <label for="cj-m"
             class="text-center p-2 border rounded-xl peer-checked/cj-m:bg-red-500 peer-checked/cj-m:text-white">Malo</label>
         </div>
@@ -486,14 +499,16 @@
     </div>
 
   </div>
-  <div id="planillaPDF"></div>
+  <div class="flex justify-center bg-gray-200 p-6">
+    <div id="planillaPDF"></div>
+  </div>
   <!-- jsPDF desde CDN -->
   <!-- html2canvas -->
- 
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
- 
+
   <script src="app.js"></script>
 </body>
 

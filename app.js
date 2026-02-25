@@ -73,30 +73,7 @@ function obtenerDatosFormulario() {
         obs: document.getElementById("obsEstadoJaulas")?.value || ""
       }
     },
-    carga:{
-      nombreEquipo: document.getElementById("nombreEquipoCarga")?.value || "",
 
-      personalCapacitado: {
-        ...marcarEstado(document.querySelector('input[name="personalCapacitadoEval"]:checked')?.value || ""),
-        obs: document.getElementById("obsPersonalCapacitado")?.value || ""
-      },
-  
-      manipulacionAves: {
-        ...marcarEstado(document.querySelector('input[name="manipulacionAves"]:checked')?.value || ""),
-        obs: document.getElementById("obsManipulacionAves")?.value || ""
-      },
-  
-      encerradoAves: {
-        ...marcarEstado(document.querySelector('input[name="encerradoAvesEval"]:checked')?.value || ""),
-        obs: document.getElementById("obsEncerradoAves")?.value || ""
-      },
-  
-      cargaJaulas: {
-        ...marcarEstado(document.querySelector('input[name="cargaJaulasEval"]:checked')?.value || ""),
-        obs: document.getElementById("obsCargaJaulas")?.value || ""
-      }
-    },
-    
     infraestructura: {
       caminosInternos: {
         ...marcarEstado(document.querySelector('input[name="caminosInternos"]:checked')?.value),
@@ -173,8 +150,7 @@ function generarPlanilla() {
 	const planilla = document.getElementById("planillaPDF");
 
 	planilla.innerHTML = `
-<div class="w-[794px] bg-white text-black font-sans text-[11px] leading-normal border-2 border-black mx-0">
-
+  <div class="w-[794px] min-h-[1123px] bg-white text-black font-sans text-[11px] leading-normal border-2 border-black mx-auto">
   <!-- ===================== HEADER ===================== -->
   <div class="pt-4">
     <div class="flex justify-between items-start px-6">
@@ -360,36 +336,36 @@ function generarPlanilla() {
 
     <div class="flex border-b-2 border-black text-[11px]">
       <div class="w-1/2 border-r border-black px-2 py-1">Corte Alimento: ${datos.corteAlimento.horaCorte} </div>
-      <div class="w-1/2 px-2 py-1">Comienzo de carga:${datos.corteAlimento.comienzoCarga}</div>
+      <div class="w-1/2 px-2 py-1">Comienzo de carga: ${datos.corteAlimento.comienzoCarga}</div>
     </div>
 
     <div class="border-b-2 border-black px-2 py-1 text-[11px]">
-      Horas de ayuno:${datos.corteAlimento.horasAyuno}
+      Horas de ayuno: ${datos.corteAlimento.horasAyuno}
     </div>
 
     <div class="h-6 border-b-2 border-black"></div>
 
     <div class="font-bold underline mt-2 px-2">CARGA</div>
-    <div class="font-bold mt-1 px-2">Equipo de carga:</div>
+    <div class="font-bold mt-1 px-2">Equipo de carga: ${datos.carga.equipo}</div>
 
     <!-- TABLA 2 -->
     <table class="w-full border-2 border-black border-collapse text-[11px] mt-1  [&_td]:align-middle [&_th]:align-middle">
       <thead>
         <tr>
           <th class="border border-black w-[45%]"></th>
-          <th class="border border-black italic font-bold">Bueno</th>
-          <th class="border border-black italic font-bold">Regular</th>
-          <th class="border border-black italic font-bold">Mala</th>
-          <th class="border border-black italic font-bold">Observaciones</th>
+          <th class="border border-black italic font-bold mb-10">Bueno</th>
+          <th class="border border-black italic font-bold mb-10">Regular</th>
+          <th class="border border-black italic font-bold mb-10">Mala</th>
+          <th class="border border-black italic font-bold mb-10">Observaciones</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td class="border border-black px-2 py-1">¿El personal está debidamente capacitado?</td>
-          <td class="border border-black px-2 py-1 text-center">${datos.carga.manipulacionAves.bueno}</td>
-          <td class="border border-black px-2 py-1 text-center">${datos.carga.manipulacionAves.regular}</td>
-          <td class="border border-black px-2 py-1 text-center">${datos.carga.manipulacionAves.malo}</td>
-          <td class="border border-black">${datos.carga.manipulacionAves.obs}</td>
+          <td class="border border-black px-2 py-1 text-center">${datos.carga.personalCapacitado.bueno}</td>
+          <td class="border border-black px-2 py-1 text-center">${datos.carga.personalCapacitado.regular}</td>
+          <td class="border border-black px-2 py-1 text-center">${datos.carga.personalCapacitado.malo}</td>
+          <td class="border border-black">${datos.carga.personalCapacitado.obs}</td>
         </tr>
         <tr>
           <td class="border border-black px-2 py-1">Manipulación de las aves al momento de la carga</td>
@@ -524,7 +500,7 @@ async function generarPDF() {
 
   const canvas = await html2canvas(elemento, {
     scale: 2,
-    backgroundColor: "#ffffff"
+    windowWidth: 1200
   });
 
   // Restaurar estilos
