@@ -1,153 +1,246 @@
+let contadorCuadrillas = 3;
+
+function agregarCuadrilla() {
+	contadorCuadrillas++;
+
+	const contenedor = document.getElementById("contenedorCuadrillas");
+
+	const div = document.createElement("div");
+	div.classList.add(
+		"cuadrilla-item",
+		"grid",
+		"grid-cols-1",
+		"sm:grid-cols-[1fr_1fr_auto]",
+		"gap-2",
+		"items-center",
+	);
+
+	div.innerHTML = `
+  <input type="text" placeholder="Cuadrilla ${contadorCuadrillas}" 
+    class="cuadrilla-nombre p-2 border rounded-xl w-full">
+
+  <input type="number" placeholder="Operarios ${contadorCuadrillas}" 
+    class="cuadrilla-operarios p-2 border rounded-xl w-full">
+
+  <button onclick="eliminarCuadrilla(this)" 
+    class="bg-red-500 text-white px-3 py-2 rounded-xl w-full sm:w-auto">
+    Eliminar
+  </button>
+`;
+
+	contenedor.appendChild(div);
+}
 
 function obtenerDatosFormulario() {
+	const cuadrillas = [];
 
-  const marcarEstado = (valor) => ({
-    bueno: valor === "Bueno" ? "X" : "",
-    regular: valor === "Regular" ? "X" : "",
-    malo: valor === "Malo" ? "X" : ""
-  });
+	document.querySelectorAll(".cuadrilla-item").forEach((div) => {
+		const nombre = div.querySelector(".cuadrilla-nombre")?.value || "";
+		const operarios = div.querySelector(".cuadrilla-operarios")?.value || "";
 
-  const marcarSiNoNA = (valor) => ({
-    si: valor === "Si" ? "X" : "",
-    no: valor === "No" ? "X" : "",
-    na: valor === "NA" ? "X" : ""
-  });
+		if (nombre || operarios) {
+			cuadrillas.push({ nombre, operarios });
+		}
+	});
+	const marcarEstado = (valor) => ({
+		bueno: valor === "Bueno" ? "X" : "",
+		regular: valor === "Regular" ? "X" : "",
+		malo: valor === "Malo" ? "X" : "",
+	});
 
-  return {
+	const marcarSiNoNA = (valor) => ({
+		si: valor === "Si" ? "X" : "",
+		no: valor === "No" ? "X" : "",
+		na: valor === "NA" ? "X" : "",
+	});
 
-    datosGenerales: {
-      fecha: document.getElementById("fecha")?.value,
-      hora: document.getElementById("hora")?.value,
-      supervisor: document.getElementById("supervisor")?.value,
-      granja: document.getElementById("granja")?.value,
-      propietario: document.getElementById("propietario")?.value,
-      tipoPollo: document.getElementById("tipoPollo")?.value,
-      destinos:document.getElementById("destino")?.value,
-      mortandad:document.getElementById("mortandad")?.value,
-      direccion:document.getElementById("direccion")?.value,
-    },
-    cuadrillas: [
-      {
-        nombre: document.getElementById("cuadrilla1")?.value || "",
-        operarios: document.getElementById("operarios1")?.value || ""
-      },
-      {
-        nombre: document.getElementById("cuadrilla2")?.value || "",
-        operarios: document.getElementById("operarios2")?.value || ""
-      },
-      {
-        nombre: document.getElementById("cuadrilla3")?.value || "",
-        operarios: document.getElementById("operarios3")?.value || ""
-      }
-    ],
-    presentesCarga: {
-      propietario: document.getElementById("propietarioPresente")?.checked ? "X" : "",
-      encargado: document.getElementById("encargadoPresente")?.checked ? "X" : "",
-      ninguno: document.getElementById("ningunoPresente")?.checked ? "X" : ""
-    },
-    caminoHastaGranja:{
-      tierra: document.getElementById("tierra").checked ?  "X" : "",
-      
-      asfaltado:document.getElementById("asfaltado").checked ? "X" : "",
-      mejorado: document.getElementById("mejorado").checked ? "X" : "",
-    },
-    evaluacionInfraestructura: {
-      caminosInternos: {
-        ...marcarEstado(document.querySelector('input[name="caminosInternos"]:checked')?.value || ""),
-        obs: document.getElementById("obsCaminosInternos")?.value || ""
-      },
-      caminosHasta: {
-        ...marcarEstado(document.querySelector('input[name="caminosHasta"]:checked')?.value || ""),
-        obs: document.getElementById("obsCaminosHasta")?.value || ""
-      },
-      tejidosGalpon: {
-        ...marcarEstado(document.querySelector('input[name="tejidosGalpon"]:checked')?.value || ""),
-        obs: document.getElementById("obsTejidosGalpon")?.value || ""
-      },
-      camaGalpon: {
-        ...marcarEstado(document.querySelector('input[name="camaGalpon"]:checked')?.value || ""),
-        obs: document.getElementById("obsCamaGalpon")?.value || ""
-      },
-      estadoJaulas: {
-        ...marcarEstado(document.querySelector('input[name="estadoJaulas"]:checked')?.value || ""),
-        obs: document.getElementById("obsEstadoJaulas")?.value || ""
-      }
-    },
+	return {
+		datosGenerales: {
+			fecha: document.getElementById("fecha")?.value,
+			hora: document.getElementById("hora")?.value,
+			supervisor: document.getElementById("supervisor")?.value,
+			granja: document.getElementById("granja")?.value,
+			propietario: document.getElementById("propietario")?.value,
+			tipoPollo: document.getElementById("tipoPollo")?.value,
+			destinos: document.getElementById("destino")?.value,
+			mortandad: document.getElementById("mortandad")?.value,
+			direccion: document.getElementById("direccion")?.value,
+		},
+		cuadrillas: cuadrillas,
 
-    infraestructura: {
-      caminosInternos: {
-        ...marcarEstado(document.querySelector('input[name="caminosInternos"]:checked')?.value),
-        obs: document.getElementById("obsCaminosInternos")?.value
-      },
-      caminosHasta: {
-        ...marcarEstado(document.querySelector('input[name="caminosHasta"]:checked')?.value),
-        obs: document.getElementById("obsCaminosHasta")?.value
-      },
-      tejidosGalpon: {
-        ...marcarEstado(document.querySelector('input[name="tejidosGalpon"]:checked')?.value),
-        obs: document.getElementById("obsTejidosGalpon")?.value
-      },
-      camaGalpon: {
-        ...marcarEstado(document.querySelector('input[name="camaGalpon"]:checked')?.value),
-        obs: document.getElementById("obsCamaGalpon")?.value
-      },
-      estadoJaulas: {
-        ...marcarEstado(document.querySelector('input[name="estadoJaulas"]:checked')?.value),
-        obs: document.getElementById("obsEstadoJaulas")?.value
-      }
-    },
+		presentesCarga: {
+			propietario: document.getElementById("propietarioPresente")?.checked
+				? "X"
+				: "",
+			encargado: document.getElementById("encargadoPresente")?.checked
+				? "X"
+				: "",
+			ninguno: document.getElementById("ningunoPresente")?.checked ? "X" : "",
+		},
+		caminoHastaGranja: {
+			tierra: document.getElementById("tierra").checked ? "X" : "",
 
-    corteAlimento: {
-      horaCorte: document.getElementById("horaCorteAlimento")?.value,
-      comienzoCarga: document.getElementById("horaComienzoCarga")?.value,
-      horasAyuno: document.getElementById("horasAyuno")?.value
-    },
+			asfaltado: document.getElementById("asfaltado").checked ? "X" : "",
+			mejorado: document.getElementById("mejorado").checked ? "X" : "",
+		},
+		evaluacionInfraestructura: {
+			caminosInternos: {
+				...marcarEstado(
+					document.querySelector('input[name="caminosInternos"]:checked')
+						?.value || "",
+				),
+				obs: document.getElementById("obsCaminosInternos")?.value || "",
+			},
+			caminosHasta: {
+				...marcarEstado(
+					document.querySelector('input[name="caminosHasta"]:checked')?.value ||
+						"",
+				),
+				obs: document.getElementById("obsCaminosHasta")?.value || "",
+			},
+			tejidosGalpon: {
+				...marcarEstado(
+					document.querySelector('input[name="tejidosGalpon"]:checked')
+						?.value || "",
+				),
+				obs: document.getElementById("obsTejidosGalpon")?.value || "",
+			},
+			camaGalpon: {
+				...marcarEstado(
+					document.querySelector('input[name="camaGalpon"]:checked')?.value ||
+						"",
+				),
+				obs: document.getElementById("obsCamaGalpon")?.value || "",
+			},
+			estadoJaulas: {
+				...marcarEstado(
+					document.querySelector('input[name="estadoJaulas"]:checked')?.value ||
+						"",
+				),
+				obs: document.getElementById("obsEstadoJaulas")?.value || "",
+			},
+		},
 
-    carga: {
-      equipo: document.getElementById("nombreEquipoCarga")?.value,
+		infraestructura: {
+			caminosInternos: {
+				...marcarEstado(
+					document.querySelector('input[name="caminosInternos"]:checked')
+						?.value,
+				),
+				obs: document.getElementById("obsCaminosInternos")?.value,
+			},
+			caminosHasta: {
+				...marcarEstado(
+					document.querySelector('input[name="caminosHasta"]:checked')?.value,
+				),
+				obs: document.getElementById("obsCaminosHasta")?.value,
+			},
+			tejidosGalpon: {
+				...marcarEstado(
+					document.querySelector('input[name="tejidosGalpon"]:checked')?.value,
+				),
+				obs: document.getElementById("obsTejidosGalpon")?.value,
+			},
+			camaGalpon: {
+				...marcarEstado(
+					document.querySelector('input[name="camaGalpon"]:checked')?.value,
+				),
+				obs: document.getElementById("obsCamaGalpon")?.value,
+			},
+			estadoJaulas: {
+				...marcarEstado(
+					document.querySelector('input[name="estadoJaulas"]:checked')?.value,
+				),
+				obs: document.getElementById("obsEstadoJaulas")?.value,
+			},
+		},
 
-      personalCapacitado: {
-        ...marcarEstado(document.querySelector('input[name="personalCapacitado"]:checked')?.value),
-        obs: document.getElementById("obsPersonalCapacitado")?.value
-      },
+		corteAlimento: {
+			horaCorte: document.getElementById("horaCorteAlimento")?.value,
+			comienzoCarga: document.getElementById("horaComienzoCarga")?.value,
+			horasAyuno: document.getElementById("horasAyuno")?.value,
+		},
 
-      manipulacionAves: {
-        ...marcarEstado(document.querySelector('input[name="manipulacionAves"]:checked')?.value),
-        obs: document.getElementById("obsManipulacionAves")?.value
-      },
+		carga: {
+			equipo: document.getElementById("nombreEquipoCarga")?.value,
 
-      encerradoAves: {
-        ...marcarEstado(document.querySelector('input[name="encerradoAves"]:checked')?.value),
-        obs: document.getElementById("obsEncerradoAves")?.value
-      },
+			personalCapacitado: {
+				...marcarEstado(
+					document.querySelector('input[name="personalCapacitado"]:checked')
+						?.value,
+				),
+				obs: document.getElementById("obsPersonalCapacitado")?.value,
+			},
 
-      cargaJaulas: {
-        ...marcarEstado(document.querySelector('input[name="cargaJaulas"]:checked')?.value),
-        obs: document.getElementById("obsCargaJaulas")?.value
-      },
-      avesMuertasEval:{
-        ...marcarEstado(document.querySelector('input[name="avesMuertasEval"]:checked')?.value),
-        obs: document.getElementById('obsAvesMuertas')?.value,
-      },
+			manipulacionAves: {
+				...marcarEstado(
+					document.querySelector('input[name="manipulacionAves"]:checked')
+						?.value,
+				),
+				obs: document.getElementById("obsManipulacionAves")?.value,
+			},
 
-      carganAvesMuertas: marcarSiNoNA(
-        document.querySelector('input[name="seCarganAvesMuertas"]:checked')?.value || ""
-      ),
-      bienestarAnimal: marcarSiNoNA(
-        document.querySelector('input[name="bienestarAnimal"]:checked')?.value || ""
-      ),
-      puertas: marcarSiNoNA(
-        document.querySelector('input[name="puertas"]:checked')?.value || ""
-      )
-    },
+			encerradoAves: {
+				...marcarEstado(
+					document.querySelector('input[name="encerradoAves"]:checked')?.value,
+				),
+				obs: document.getElementById("obsEncerradoAves")?.value,
+			},
 
-    observacionesFinales: document.getElementById("observacionesFinales")?.value
-  };
+			cargaJaulas: {
+				...marcarEstado(
+					document.querySelector('input[name="cargaJaulas"]:checked')?.value,
+				),
+				obs: document.getElementById("obsCargaJaulas")?.value,
+			},
+			avesMuertasEval: {
+				...marcarEstado(
+					document.querySelector('input[name="avesMuertasEval"]:checked')
+						?.value,
+				),
+				obs: document.getElementById("obsAvesMuertas")?.value,
+			},
+
+			carganAvesMuertas: marcarSiNoNA(
+				document.querySelector('input[name="seCarganAvesMuertas"]:checked')
+					?.value || "",
+			),
+			bienestarAnimal: marcarSiNoNA(
+				document.querySelector('input[name="bienestarAnimal"]:checked')
+					?.value || "",
+			),
+			puertas: marcarSiNoNA(
+				document.querySelector('input[name="puertas"]:checked')?.value || "",
+			),
+		},
+
+		observacionesFinales: document.getElementById("observacionesFinales")
+			?.value,
+	};
 }
 function generarPlanilla() {
-  const datos = obtenerDatosFormulario();
-	
+	const datos = obtenerDatosFormulario();
+
 	const planilla = document.getElementById("planillaPDF");
+	const filasCuadrillas = datos.cuadrillas
+		.map(
+			(c) => `
+  <td class="border border-black w-24 h-6 text-center">
+    ${c.nombre || ""}
+  </td>
+`,
+		)
+		.join("");
+
+	const filasOperarios = datos.cuadrillas
+		.map(
+			(c) => `
+  <td class="border border-black h-6 text-center">
+    ${c.operarios || ""}
+  </td>
+`,
+		)
+		.join("");
 
 	planilla.innerHTML = `
   <div class="w-[794px] min-h-[1123px] bg-white text-black font-sans text-[11px] leading-normal border-2 border-black mx-auto">
@@ -230,30 +323,14 @@ function generarPlanilla() {
         <div>Cant operarios:</div>
       </div>
 
-     <table class="border border-black border-collapse text-[11px]  [&_td]:align-middle [&_th]:align-middle">
-    <tr>
-      <td class="border border-black w-24 h-6 text-center">
-        ${datos.cuadrillas[0].nombre}
-      </td>
-      <td class="border border-black w-24 text-center">
-        ${datos.cuadrillas[1].nombre}
-      </td>
-      <td class="border border-black w-24 text-center">
-        ${datos.cuadrillas[2].nombre}
-      </td>
-    </tr>
-    <tr>
-      <td class="border border-black h-6 text-center">
-        ${datos.cuadrillas[0].operarios}
-      </td>
-      <td class="border border-black text-center">
-        ${datos.cuadrillas[1].operarios}
-      </td>
-      <td class="border border-black text-center">
-        ${datos.cuadrillas[2].operarios}
-      </td>
-    </tr>
-  </table>
+     <table class="border border-black border-collapse text-[11px] [&_td]:align-middle [&_th]:align-middle">
+  <tr>
+    ${filasCuadrillas}
+  </tr>
+  <tr>
+    ${filasOperarios}
+  </tr>
+</table>
     </div>
 
     <div class="flex gap-2 pt-1">
@@ -317,10 +394,10 @@ function generarPlanilla() {
         </tr>
         <tr>
             <td class="border border-black px-2 py-1">Cama de los galpones</td>
-            <td class="border border-black px-2 py-1 text-center">${datos.evaluacionInfraestructura.camaGalpon.bueno }</td>
-            <td class="border border-black px-2 py-1 text-center">${datos.evaluacionInfraestructura.camaGalpon.regular }</td>
-            <td class="border border-black px-2 py-1 text-center">${datos.evaluacionInfraestructura.camaGalpon.malo }</td>
-            <td class="border border-black ">${datos.evaluacionInfraestructura.camaGalpon.obs }</td>
+            <td class="border border-black px-2 py-1 text-center">${datos.evaluacionInfraestructura.camaGalpon.bueno}</td>
+            <td class="border border-black px-2 py-1 text-center">${datos.evaluacionInfraestructura.camaGalpon.regular}</td>
+            <td class="border border-black px-2 py-1 text-center">${datos.evaluacionInfraestructura.camaGalpon.malo}</td>
+            <td class="border border-black ">${datos.evaluacionInfraestructura.camaGalpon.obs}</td>
           </tr>
         <tr>
             <td class="border border-black px-2 py-1">Estado de las jaulas</td>
@@ -478,65 +555,65 @@ function generarPlanilla() {
   generarPDF();
 }
 async function generarPDF() {
-  await document.fonts.ready;
-  const { jsPDF } = window.jspdf;
-  const elemento = document.getElementById("planillaPDF");
-  if (!elemento) return;
+	await document.fonts.ready;
+	const { jsPDF } = window.jspdf;
+	const elemento = document.getElementById("planillaPDF");
+	if (!elemento) return;
 
-  // Guardar estilos originales
-  const originalStyles = {
-    width: elemento.style.width,
-    maxWidth: elemento.style.maxWidth,
-    margin: elemento.style.margin,
-    display: elemento.style.display
-  };
+	// Guardar estilos originales
+	const originalStyles = {
+		width: elemento.style.width,
+		maxWidth: elemento.style.maxWidth,
+		margin: elemento.style.margin,
+		display: elemento.style.display,
+	};
 
-  // Forzar que se renderice con su ancho real (aunque se salga de la pantalla)
-  elemento.style.width = "fit-content";
-  elemento.style.maxWidth = "none";
-  elemento.style.margin = "0";
-  elemento.style.display = "inline-block";
+	// Forzar que se renderice con su ancho real (aunque se salga de la pantalla)
+	elemento.style.width = "fit-content";
+	elemento.style.maxWidth = "none";
+	elemento.style.margin = "0";
+	elemento.style.display = "inline-block";
 
-  await new Promise(r => requestAnimationFrame(r));
+	await new Promise((r) => requestAnimationFrame(r));
 
-  const canvas = await html2canvas(elemento, {
-    scale: 2,
-    windowWidth: 1200
-  });
+	const canvas = await html2canvas(elemento, {
+		scale: 2,
+		windowWidth: 1200,
+	});
 
-  // Restaurar estilos
-  elemento.style.width = originalStyles.width;
-  elemento.style.maxWidth = originalStyles.maxWidth;
-  elemento.style.margin = originalStyles.margin;
-  elemento.style.display = originalStyles.display;
+	// Restaurar estilos
+	elemento.style.width = originalStyles.width;
+	elemento.style.maxWidth = originalStyles.maxWidth;
+	elemento.style.margin = originalStyles.margin;
+	elemento.style.display = originalStyles.display;
 
-  const imgData = canvas.toDataURL("image/png");
+	const imgData = canvas.toDataURL("image/png");
 
-  const pageWidth = 794;
-  const pageHeight = 1123;
+	const pageWidth = 794;
+	const pageHeight = 1123;
 
-  const pdf = new jsPDF({
-    orientation: "p",
-    unit: "px",
-    format: [pageWidth, pageHeight]
-  });
+	const pdf = new jsPDF({
+		orientation: "p",
+		unit: "px",
+		format: [pageWidth, pageHeight],
+	});
 
-  const imgWidth = canvas.width;
-  const imgHeight = canvas.height;
+	const imgWidth = canvas.width;
+	const imgHeight = canvas.height;
 
-  const scale = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
-  const finalWidth = imgWidth * scale;
-  const finalHeight = imgHeight * scale;
+	const scale = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
+	const finalWidth = imgWidth * scale;
+	const finalHeight = imgHeight * scale;
 
-  const x = (pageWidth - finalWidth) / 2;
-  const y = (pageHeight - finalHeight) / 2;
+	const x = (pageWidth - finalWidth) / 2;
+	const y = (pageHeight - finalHeight) / 2;
 
-  pdf.addImage(imgData, "PNG", x, y, finalWidth, finalHeight);
-  pdf.save('Planilla_Inspeccion');
-  Swal.fire({
-    icon: 'success',
-    title: 'Archivo generado',
-    text: 'El PDF se descargó correctamente',
-    confirmButtonColor: '#16a34a'
-  });
+	pdf.addImage(imgData, "PNG", x, y, finalWidth, finalHeight);
+	pdf.save("Planilla_Inspeccion");
+	Swal.fire({
+		icon: "success",
+		title: "Archivo generado",
+		text: "El PDF se descargó correctamente",
+		confirmButtonColor: "#16a34a",
+	});
 }
