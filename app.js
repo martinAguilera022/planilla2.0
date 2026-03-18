@@ -609,7 +609,9 @@ async function generarPDF() {
 	const y = (pageHeight - finalHeight) / 2;
 
 	pdf.addImage(imgData, "PNG", x, y, finalWidth, finalHeight);
-	pdf.save("Planilla_Inspeccion");
+	const fecha = new Date().toISOString().replace(/[:.]/g, "-");
+	pdf.save(`Planilla_${fecha}.pdf`);
+
 	Swal.fire({
 		icon: "success",
 		title: "Archivo generado",
